@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- ملف مستقل: يعمل بدون إنترنت -->
 <title>تركيب المادة – سادس أساسي</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg1:#0f2a4a;--bg2:#1b5e7a;--tx:#fff;--card:rgba(255,255,255,.12);--ac:#ffd54f;--pr:#ff5252;--ne:#b0bec5;--el:#4fc3f7;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -220,7 +220,7 @@ document.querySelectorAll('[data-cl]').forEach(el=>{const k=el.dataset.cl,s=el.d
 
 // speech
 function voices(){return speechSynthesis.getVoices().filter(x=>/^ar/i.test(x.lang))}
-function sc(v){return(/natural|neural|online/i.test(v.name)?4:0)+(/google|microsoft|hoda|naayf|maged|laila|zariyah|salma|shakir/i.test(v.name)?2:0)+(/ar[-_]SA/i.test(v.lang)?1:0)}
+function sc(v){return(navigator.onLine?0:(v.localService?6:-20))+(/natural|neural|online/i.test(v.name)?4:0)+(/google|microsoft|hoda|naayf|maged|laila|zariyah|salma|shakir/i.test(v.name)?2:0)+(/ar[-_]SA/i.test(v.lang)?1:0)}
 function fillV(){}
 function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t),v=voices().sort((a,b)=>sc(b)-sc(a));u.voice=v[0]||null;u.lang=u.voice?u.voice.lang:'ar-SA';u.rate=.85;u.pitch=1;speechSynthesis.speak(u)}
 function go(n){if(n<0||n>=S.length)return;i=n;S.forEach((s,k)=>{s.classList.toggle('on',k===i);s.classList.toggle('past',k<i)});
